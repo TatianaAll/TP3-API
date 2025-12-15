@@ -1,5 +1,6 @@
 const Logements = require("../models/Logements"); // on appelle le modèle
 
+// Creation d'un nouveau logement
 exports.createLogement = (req, res, next) => {
   // Traitements pour les tags --> on attend un tableau donc on va split
   let tags = [];

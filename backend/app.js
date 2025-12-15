@@ -20,6 +20,7 @@ app.use(express.json()); // Permet de parser le body des requêtes en JSON
 
 //On doit appeler le router des logements
 const logementRoutes = require('./routes/logementsRoutes');
+const usersRoutes = require('./routes/usersRoutes');
 
 // Middleware pour gérer les CORS
 app.use((req, res, next) => {
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 
 // Appel des routes
 app.use('/api/logements', logementRoutes);
+app.use('/api/users', usersRoutes);
 
 
 // On export l’application
