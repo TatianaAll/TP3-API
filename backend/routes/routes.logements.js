@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-router.post();
-router.get();
-router.delete();
-router.update();
+router.get('/', logementsController.getAllLogements);
+router.post('/', logementsController.createLogement);
+router.delete('/:id', logementsController.deleteLogementById);
+router.update('/:id', logementsController.updateLogementById);
 
 module.exports = router;

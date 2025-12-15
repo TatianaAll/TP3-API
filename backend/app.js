@@ -14,7 +14,7 @@ mongoose
 const express = require('express');
 
 //On doit appeler le router des logements
-// const logementRoutes = require('./routes/routes.logements');
+const logementRoutes = require('./routes/routes.logements');
 
 // On crée l'application Express
 const app = express();
@@ -31,6 +31,9 @@ app.use((req, res, next) => {
 
 // j'appelle mon Schéma pour enregistrer dans la BDD
 const Logements = require('./models/Logements');
+
+// Appel des routes
+app.use('/api/logements', logementRoutes);
 
 // Middleware pour le post d'un logement
 app.post('/api/logements', (req, res, next) => {
