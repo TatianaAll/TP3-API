@@ -1,8 +1,36 @@
 const Logements = require("../models/Logements"); // on appelle le modèle
 
 exports.createLogement = (req, res, next) => {
+  // Traitements pour les tags --> on attend un tableau donc on va split
+  let tags = [];
+  if (req.body.tags) {
+    if (typeof req.body.tags === "string") {
+      // On split sur les virgules et on enlève les espaces vides
+      tags = req.body.tags
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag);
+    } else if (Array.isArray(req.body.tags)) {
+      tags = req.body.tags;
+    }
+  }
+
+  let equipments = [];
+  if (req.body.equipments) {
+    if (typeof req.body.equipments === "string") {
+      // On split sur les virguels et on enlève les espaces vides
+      equipments = req.body.equipments
+        .split(",")
+        .map((equipment) => equipment.trim())
+        .filter((equipment) => equipment);
+    } else if (Array.isArray(req.body.equipments)) {
+      equipments = req.body.equipments;
+    }
+  }
   const logement = new Logements({
     ...req.body, //on décompose le body
+    tags: tags, // on remplace les tags par les tags traités
+    equipments: equipments, // et les équipements par les équipements traités
   });
   logement
     .save() //on enregistre dans la BDD
